@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>关于JS的IIFE | Summer/JWX</title>
+<link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1560753978983">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://jwxhhxx.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jwxhhxx.github.io/">
+  <img class="avatar" src="https://jwxhhxx.github.io//images/avatar.png?v=1560753978983" alt="">
+  </a>
+  <h1 class="site-title">
+    Summer/JWX
+  </h1>
+  <p class="site-description">
+    宝剑尚未配妥，转身已是江湖
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              关于JS的IIFE
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-17 ·
+              </time>
+              
+                <a href="https://jwxhhxx.github.io//tag/20A_Xb6SR" class="post-tag">
+                  # javaScript
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <h1 id="1定义">1.定义</h1>
+<p>IIFE: Immediately Invoked Function Expression，意为立即调用的函数表达式，也就是说，声明函数的同时立即调用这个函数。
+对比一下，这是不采用IIFE时的函数声明和函数调用：</p>
+<pre><code>function foo(){
+  var a = 10;
+  console.log(a);
+}
+ 
+foo();
+</code></pre>
+<p>下面是IIFE形式的函数调用：</p>
+<pre><code>(functionfoo(){
+  vara=10;
+  console.log(a);
+})();
+</code></pre>
+<p>函数的声明和IIFE的区别在于，在函数的声明中，我们首先看到的是function关键字，而IIFE我们首先看到的是左边的（。也就是说，使用一对（）将函数的声明括起来，使得JS编译器不再认为这是一个函数声明，而是一个IIFE，即需要立刻执行声明的函数。
+两者达到的目的是相同的，都是声明了一个函数foo并且随后调用函数foo。</p>
+<h1 id="2使用iife的好处">2使用IIFE的好处</h1>
+<p>如果只是为了立即执行一个函数，显然IIFE所带来的好处有限。实际上，IIFE的出现是为了弥补JS在scope方面的缺陷：JS只有全局作用域（global scope）、函数作用域（function scope），从ES6开始才有块级作用域（block scope）。对比现在流行的其他面向对象的语言可以看出，JS在访问控制这方面是多么的脆弱！那么如何实现作用域的隔离呢？在JS中，只有function才能实现作用域隔离，因此如果要将一段代码中的变量、函数等的定义隔离出来，只能将这段代码封装到一个函数中。
+在我们通常的理解中，将代码封装到函数中的目的是为了复用。在JS中，当然声明函数的目的在大多数情况下也是为了复用，但是JS迫于作用域控制手段的贫乏，我们也经常看到只使用一次的函数：这通常的目的是为了隔离作用域了！既然只使用一次，那么立即执行好了！既然只使用一次，函数的名字也省掉了！这就是IIFE的由来。</p>
+<h1 id="3-iife的常见形式">3 IIFE的常见形式</h1>
+<pre><code>(function foo(){
+  var a = 10;
+  console.log(a);
+})();
+</code></pre>
+<h1 id="4-iife的函数名和参数">4 IIFE的函数名和参数</h1>
+<p>IIFE确实只执行一次，给IIFE起个名字有些画蛇添足了。如果非要给IIFE起个名字，干脆就叫IIFE好了。
+IIFE可以带（多个）参数，比如下面的形式：</p>
+<pre><code>var a = 2;
+(function IIFE(global){
+    var a = 3;
+    console.log(a); // 3
+    console.log(global.a); // 2
+})(window);
+ 
+console.log(a); // 2
+</code></pre>
+<h1 id="小结">小结</h1>
+<p>IIFE的目的是为了隔离作用域，防止污染全局命名空间。</p>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jwxhhxx.github.io//post/javascript-zhong-bao-uncaught-referenceerror-xxx-is-not-defined">
+              <h3 class="post-title">
+                 javascript中报Uncaught ReferenceError: XXX is not defined
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jwxhhxx.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
