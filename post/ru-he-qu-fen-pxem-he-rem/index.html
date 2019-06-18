@@ -1,0 +1,163 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何区分px，em和rem | Summer/JWX</title>
+<link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1560842988899">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://jwxhhxx.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jwxhhxx.github.io/">
+  <img class="avatar" src="https://jwxhhxx.github.io//images/avatar.png?v=1560842988899" alt="">
+  </a>
+  <h1 class="site-title">
+    Summer/JWX
+  </h1>
+  <p class="site-description">
+    宝剑尚未配妥，转身已是江湖
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              如何区分px，em和rem
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-18 ·
+              </time>
+              
+            </div>
+            
+            <div class="post-content">
+              <p>PX特点</p>
+<ol>
+<li>
+<p>IE无法调整那些使用px作为单位的字体大小；</p>
+</li>
+<li>
+<p>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位；</p>
+</li>
+<li>
+<p>Firefox能够调整px和em，rem，但是很多中国网民使用IE浏览器(或内核)。</p>
+</li>
+</ol>
+<blockquote>
+<p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。</p>
+</blockquote>
+<blockquote>
+<p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。(引自CSS2.0手册)</p>
+</blockquote>
+<p>任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。</p>
+<p>EM特点</p>
+<ol>
+<li>
+<p>em的值并不是固定的；</p>
+</li>
+<li>
+<p>em会继承父级元素的字体大小</p>
+</li>
+</ol>
+<p>所以我们在写CSS的时候，需要注意两点：</p>
+<ol>
+<li>
+<p>body选择器中声明Font-size=62.5%；</p>
+</li>
+<li>
+<p>将你的原来的px数值除以10，然后换上em作为单位；</p>
+</li>
+<li>
+<p>重新计算那些被放大的字体的em数值。避免字体大小的重复声明。</p>
+</li>
+</ol>
+<p>也就是避免1.2 * 1.2= 1.44的现象。比如说你在#content中声明了字体大小为1.2em，那么在声明p的字体大小时就只能是1em，而不是1.2em, 因为此em非彼em，它因继承#content的字体高而变为了1em=12px。</p>
+<p>rem特点</p>
+<p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。目前，除了IE8及更早版本外，所有浏览器均已支持rem。对于不支持它的浏览器，应对方法也很简单，就是多写一个绝对单位的声明。这些浏览器会忽略用rem设定的字体大小。下面就是一个例子：</p>
+<p>p {font-size:14px; font-size:875rem;}</p>
+<p>注意：
+选择使用什么字体单位主要由你的项目来决定，如果你的用户群都使用最新版的浏览器，那推荐使用rem，如果要考虑兼容性，那就使用px,或者两者同时使用。</p>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jwxhhxx.github.io//post/js-zhong-guan-yu-this-de-yong-fa">
+              <h3 class="post-title">
+                JS中关于this 的用法
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jwxhhxx.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

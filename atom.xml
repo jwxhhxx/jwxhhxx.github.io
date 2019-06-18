@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jwxhhxx.github.io/</id>
     <title>Summer/JWX</title>
-    <updated>2019-06-17T06:47:00.430Z</updated>
+    <updated>2019-06-18T07:30:18.012Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jwxhhxx.github.io/"/>
     <link rel="self" href="https://jwxhhxx.github.io//atom.xml"/>
@@ -10,6 +10,111 @@
     <logo>https://jwxhhxx.github.io//images/avatar.png</logo>
     <icon>https://jwxhhxx.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Summer/JWX</rights>
+    <entry>
+        <title type="html"><![CDATA[如何区分px，em和rem]]></title>
+        <id>https://jwxhhxx.github.io//post/ru-he-qu-fen-pxem-he-rem</id>
+        <link href="https://jwxhhxx.github.io//post/ru-he-qu-fen-pxem-he-rem">
+        </link>
+        <updated>2019-06-18T02:16:19.000Z</updated>
+        <content type="html"><![CDATA[<p>PX特点</p>
+<ol>
+<li>
+<p>IE无法调整那些使用px作为单位的字体大小；</p>
+</li>
+<li>
+<p>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位；</p>
+</li>
+<li>
+<p>Firefox能够调整px和em，rem，但是很多中国网民使用IE浏览器(或内核)。</p>
+</li>
+</ol>
+<blockquote>
+<p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。</p>
+</blockquote>
+<blockquote>
+<p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。(引自CSS2.0手册)</p>
+</blockquote>
+<p>任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。</p>
+<p>EM特点</p>
+<ol>
+<li>
+<p>em的值并不是固定的；</p>
+</li>
+<li>
+<p>em会继承父级元素的字体大小</p>
+</li>
+</ol>
+<p>所以我们在写CSS的时候，需要注意两点：</p>
+<ol>
+<li>
+<p>body选择器中声明Font-size=62.5%；</p>
+</li>
+<li>
+<p>将你的原来的px数值除以10，然后换上em作为单位；</p>
+</li>
+<li>
+<p>重新计算那些被放大的字体的em数值。避免字体大小的重复声明。</p>
+</li>
+</ol>
+<p>也就是避免1.2 * 1.2= 1.44的现象。比如说你在#content中声明了字体大小为1.2em，那么在声明p的字体大小时就只能是1em，而不是1.2em, 因为此em非彼em，它因继承#content的字体高而变为了1em=12px。</p>
+<p>rem特点</p>
+<p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。目前，除了IE8及更早版本外，所有浏览器均已支持rem。对于不支持它的浏览器，应对方法也很简单，就是多写一个绝对单位的声明。这些浏览器会忽略用rem设定的字体大小。下面就是一个例子：</p>
+<p>p {font-size:14px; font-size:875rem;}</p>
+<p>注意：
+选择使用什么字体单位主要由你的项目来决定，如果你的用户群都使用最新版的浏览器，那推荐使用rem，如果要考虑兼容性，那就使用px,或者两者同时使用。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[JS中关于this 的用法]]></title>
+        <id>https://jwxhhxx.github.io//post/js-zhong-guan-yu-this-de-yong-fa</id>
+        <link href="https://jwxhhxx.github.io//post/js-zhong-guan-yu-this-de-yong-fa">
+        </link>
+        <updated>2019-06-18T00:36:58.000Z</updated>
+        <content type="html"><![CDATA[<p>1.在一般函数方法中使用 this 指代全局对象</p>
+<pre><code>function test(){
+　　　　this.x = 1;
+　　　　alert(this.x);
+　　}
+　　test(); // 1
+</code></pre>
+<p>2.作为对象方法调用，this 指代上级对象</p>
+<pre><code>function test(){
+　　alert(this.x);
+}
+var o = {};
+o.x = 1;
+o.m = test;
+o.m(); // 1
+</code></pre>
+<p>3.作为构造函数调用，this 指代new 出的对象</p>
+<pre><code>　　function test(){
+　　　　this.x = 1;
+　　}
+　　var o = new test();
+　　alert(o.x); // 1
+    //运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：
+　　var x = 2;
+　　function test(){
+　　　　this.x = 1;
+　　}
+　　var o = new test();
+　　alert(x); //2
+</code></pre>
+<p>4.apply 调用 ，apply方法作用是改变函数的调用对象，此方法的第一个参数为改变后调用这个函数的对象，this指代第一个参数</p>
+<pre><code>　var x = 0;
+　　function test(){
+　　　　alert(this.x);
+　　}
+　　var o={};
+　　o.x = 1;
+　　o.m = test;
+　　o.m.apply(); //0
+//apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。如果把最后一行代码修改为
+
+　　o.m.apply(o); //1
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[JS中的各种width]]></title>
         <id>https://jwxhhxx.github.io//post/js-zhong-de-ge-chong-width</id>
@@ -34,50 +139,33 @@
 <p>当前对象的宽度。</p>
 <p>style.width也是当前对象的宽度(width+padding+border)。</p>
 <p>区别：1)style.width返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象的宽度设定值为百分比宽度,则无论页面变大还是变小，
-
-          style.width都返回此百分比,而offsetWidth则返回在不同页面中对象的宽度值而不是百分比值；
-
-       3)如果没有给 HTML 元素指定过 width样式，则 style.width 返回的是空字符串；
-</code></pre>
+<p>2)如对象的宽度设定值为百分比宽度,则无论页面变大还是变小，</p>
+<p>style.width都返回此百分比,而offsetWidth则返回在不同页面中对象的宽度值而不是百分比值；</p>
+<p>3)如果没有给 HTML 元素指定过 width样式，则 style.width 返回的是空字符串；</p>
 <p><strong>2、offsetHeight :(Height+padding+border)</strong></p>
 <p>当前对象的高度。</p>
 <p>style.height也是当前对象的高度(height+padding+border)。</p>
 <p>区别：1)style.height返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象的高度设定值为百分比高度,则无论页面变高还是变矮，
-
-          style.height都返回此百分比,而offsetHeight则返回在不同页面中对象的高度值而不是百分比值；
-
-       3)如果没有给 HTML 元素指定过 height样式，则 style.height返回的是空字符串；
-</code></pre>
+<p>2)如对象的高度设定值为百分比高度,则无论页面变高还是变矮，	style.height都返回此百分比,而offsetHeight则返回在不同页面中对象的高度值而不是百分比值；</p>
+<p>3)如果没有给 HTML 元素指定过 height样式，则 style.height返回的是空字符串；</p>
 <p><strong>3、offsetLeft :</strong></p>
 <p>当前对象到其上级层左边的距离。</p>
 <p>不能对其进行赋值.设置对象到其上级层左边的距离请用style.left属性。</p>
 <p>style.left当前对象到其上级层左边的距离。</p>
 <p>区别：1)style.left返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象到其上级层左边的距离设定值为百分比，
-
-          style.left返回此百分比,而offsetLeft则返回到其上级层左边的距离的值；
-
-       3)如果没有给 HTML 元素指定过 left样式，则 style.left返回的是空字符串；
-</code></pre>
+<p>2)如对象到其上级层左边的距离设定值为百分比， style.left返回此百分比,而offsetLeft则返回到其上级层左边的距离的值；
+3)如果没有给 HTML 元素指定过 left样式，则 style.left返回的是空字符串；</p>
 <p><strong>4、offsetTop :</strong></p>
 <p>当前对象到其上级层顶部边的距离。</p>
 <p>不能对其进行赋值.设置对象到上级层顶部边的距离请用style.top属性。</p>
 <p>style.top当前对象到其上级层顶部边的距离。</p>
 <p>区别：1)style.top返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象到其上级层顶部边的距离设定值为百分比，
-
-          style.top返回此百分比,而offsetTop则返回到其上级顶部边的距离的值；
-
-       3)如果没有给 HTML 元素指定过 top样式，则 style.top返回的是空字符串；
-</code></pre>
+<p>2)如对象到其上级层顶部边的距离设定值为百分比， style.top返回此百分比,而offsetTop则返回到其上级顶部边的距离的值；</p>
+<p>3)如果没有给 HTML 元素指定过 top样式，则 style.top返回的是空字符串；</p>
 <p>注意：如果上级层为body，由于IE、FF对padding、margin的解释不一样所以要明确规定处理不是下列的区别就不成立了。</p>
 <p>IE   1)如果Div的上级层是body，而div与body之间有个div，如body-&gt;div-&gt;divo；divo的offsetTop=div的padding+margin+boder；</p>
-<pre><code>   2）如果Div的上级层是body，如body&gt;divo；divo的offsetTop=div的padding+margin+boder；
-
-         这divo的offsetTop=divo的margin &gt;body.padding则为divo的margin，否则为body.padding谁大是谁？
-</code></pre>
+<p>2）如果Div的上级层是body，如body&gt;divo；divo的offsetTop=div的padding+margin+boder；</p>
+<p>这divo的offsetTop=divo的margin &gt;body.padding则为divo的margin，否则为body.padding谁大是谁？</p>
 <p>FF  上述两种情况：offsetTop=margin+padding ;</p>
 <p>(IE与FF中的body默认padding为10)在IE6.0 FF3.6.13</p>
 <p>5、scrollWidth:获取对象的滚动宽度 。</p>

@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>JS中的各种width | Summer/JWX</title>
-<link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1560753978983">
+<link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1560842988899">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jwxhhxx.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://jwxhhxx.github.io/">
-  <img class="avatar" src="https://jwxhhxx.github.io//images/avatar.png?v=1560753978983" alt="">
+  <img class="avatar" src="https://jwxhhxx.github.io//images/avatar.png?v=1560842988899" alt="">
   </a>
   <h1 class="site-title">
     Summer/JWX
@@ -106,50 +106,33 @@
 <p>当前对象的宽度。</p>
 <p>style.width也是当前对象的宽度(width+padding+border)。</p>
 <p>区别：1)style.width返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象的宽度设定值为百分比宽度,则无论页面变大还是变小，
-
-          style.width都返回此百分比,而offsetWidth则返回在不同页面中对象的宽度值而不是百分比值；
-
-       3)如果没有给 HTML 元素指定过 width样式，则 style.width 返回的是空字符串；
-</code></pre>
+<p>2)如对象的宽度设定值为百分比宽度,则无论页面变大还是变小，</p>
+<p>style.width都返回此百分比,而offsetWidth则返回在不同页面中对象的宽度值而不是百分比值；</p>
+<p>3)如果没有给 HTML 元素指定过 width样式，则 style.width 返回的是空字符串；</p>
 <p><strong>2、offsetHeight :(Height+padding+border)</strong></p>
 <p>当前对象的高度。</p>
 <p>style.height也是当前对象的高度(height+padding+border)。</p>
 <p>区别：1)style.height返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象的高度设定值为百分比高度,则无论页面变高还是变矮，
-
-          style.height都返回此百分比,而offsetHeight则返回在不同页面中对象的高度值而不是百分比值；
-
-       3)如果没有给 HTML 元素指定过 height样式，则 style.height返回的是空字符串；
-</code></pre>
+<p>2)如对象的高度设定值为百分比高度,则无论页面变高还是变矮，	style.height都返回此百分比,而offsetHeight则返回在不同页面中对象的高度值而不是百分比值；</p>
+<p>3)如果没有给 HTML 元素指定过 height样式，则 style.height返回的是空字符串；</p>
 <p><strong>3、offsetLeft :</strong></p>
 <p>当前对象到其上级层左边的距离。</p>
 <p>不能对其进行赋值.设置对象到其上级层左边的距离请用style.left属性。</p>
 <p>style.left当前对象到其上级层左边的距离。</p>
 <p>区别：1)style.left返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象到其上级层左边的距离设定值为百分比，
-
-          style.left返回此百分比,而offsetLeft则返回到其上级层左边的距离的值；
-
-       3)如果没有给 HTML 元素指定过 left样式，则 style.left返回的是空字符串；
-</code></pre>
+<p>2)如对象到其上级层左边的距离设定值为百分比， style.left返回此百分比,而offsetLeft则返回到其上级层左边的距离的值；
+3)如果没有给 HTML 元素指定过 left样式，则 style.left返回的是空字符串；</p>
 <p><strong>4、offsetTop :</strong></p>
 <p>当前对象到其上级层顶部边的距离。</p>
 <p>不能对其进行赋值.设置对象到上级层顶部边的距离请用style.top属性。</p>
 <p>style.top当前对象到其上级层顶部边的距离。</p>
 <p>区别：1)style.top返回值除了数字外还带有单位px；</p>
-<pre><code>       2)如对象到其上级层顶部边的距离设定值为百分比，
-
-          style.top返回此百分比,而offsetTop则返回到其上级顶部边的距离的值；
-
-       3)如果没有给 HTML 元素指定过 top样式，则 style.top返回的是空字符串；
-</code></pre>
+<p>2)如对象到其上级层顶部边的距离设定值为百分比， style.top返回此百分比,而offsetTop则返回到其上级顶部边的距离的值；</p>
+<p>3)如果没有给 HTML 元素指定过 top样式，则 style.top返回的是空字符串；</p>
 <p>注意：如果上级层为body，由于IE、FF对padding、margin的解释不一样所以要明确规定处理不是下列的区别就不成立了。</p>
 <p>IE   1)如果Div的上级层是body，而div与body之间有个div，如body-&gt;div-&gt;divo；divo的offsetTop=div的padding+margin+boder；</p>
-<pre><code>   2）如果Div的上级层是body，如body&gt;divo；divo的offsetTop=div的padding+margin+boder；
-
-         这divo的offsetTop=divo的margin &gt;body.padding则为divo的margin，否则为body.padding谁大是谁？
-</code></pre>
+<p>2）如果Div的上级层是body，如body&gt;divo；divo的offsetTop=div的padding+margin+boder；</p>
+<p>这divo的offsetTop=divo的margin &gt;body.padding则为divo的margin，否则为body.padding谁大是谁？</p>
 <p>FF  上述两种情况：offsetTop=margin+padding ;</p>
 <p>(IE与FF中的body默认padding为10)在IE6.0 FF3.6.13</p>
 <p>5、scrollWidth:获取对象的滚动宽度 。</p>

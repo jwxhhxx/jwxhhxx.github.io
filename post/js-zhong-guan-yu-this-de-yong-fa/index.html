@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Summer/JWX</title>
+<title>JS中关于this 的用法 | Summer/JWX</title>
 <link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1560842988899">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -74,22 +74,77 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              JS中关于this 的用法
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2019-01-25 ·
+                · 2019-06-18 ·
               </time>
+              
+                <a href="https://jwxhhxx.github.io//tag/20A_Xb6SR" class="post-tag">
+                  # javaScript
+                </a>
               
             </div>
             
             <div class="post-content">
-              <p>这是关于的页面，可以在这里向世界介绍你！</p>
+              <p>1.在一般函数方法中使用 this 指代全局对象</p>
+<pre><code>function test(){
+　　　　this.x = 1;
+　　　　alert(this.x);
+　　}
+　　test(); // 1
+</code></pre>
+<p>2.作为对象方法调用，this 指代上级对象</p>
+<pre><code>function test(){
+　　alert(this.x);
+}
+var o = {};
+o.x = 1;
+o.m = test;
+o.m(); // 1
+</code></pre>
+<p>3.作为构造函数调用，this 指代new 出的对象</p>
+<pre><code>　　function test(){
+　　　　this.x = 1;
+　　}
+　　var o = new test();
+　　alert(o.x); // 1
+    //运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：
+　　var x = 2;
+　　function test(){
+　　　　this.x = 1;
+　　}
+　　var o = new test();
+　　alert(x); //2
+</code></pre>
+<p>4.apply 调用 ，apply方法作用是改变函数的调用对象，此方法的第一个参数为改变后调用这个函数的对象，this指代第一个参数</p>
+<pre><code>　var x = 0;
+　　function test(){
+　　　　alert(this.x);
+　　}
+　　var o={};
+　　o.x = 1;
+　　o.m = test;
+　　o.m.apply(); //0
+//apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。如果把最后一行代码修改为
+
+　　o.m.apply(o); //1
+</code></pre>
 
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jwxhhxx.github.io//post/js-zhong-de-ge-chong-width">
+              <h3 class="post-title">
+                JS中的各种width
+              </h3>
+            </a>
+          </div>
         
 
         
