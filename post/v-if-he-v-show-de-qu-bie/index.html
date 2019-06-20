@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>JS中关于this 的用法 | Summer/JWX</title>
+<title>v-if和v-show的区别 | Summer/JWX</title>
 <link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1561004568011">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -74,63 +74,35 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              JS中关于this 的用法
+              v-if和v-show的区别
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2019-06-18 ·
+                · 2019-06-20 ·
               </time>
-              
-                <a href="https://jwxhhxx.github.io//tag/20A_Xb6SR" class="post-tag">
-                  # javaScript
-                </a>
               
             </div>
             
             <div class="post-content">
-              <p>1.在一般函数方法中使用 this 指代全局对象</p>
-<pre><code>function test(){
-　　　　this.x = 1;
-　　　　alert(this.x);
-　　}
-　　test(); // 1
-</code></pre>
-<p>2.作为对象方法调用，this 指代上级对象</p>
-<pre><code>function test(){
-　　alert(this.x);
-}
-var o = {};
-o.x = 1;
-o.m = test;
-o.m(); // 1
-</code></pre>
-<p>3.作为构造函数调用，this 指代new 出的对象</p>
-<pre><code>　　function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(o.x); // 1
-    //运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：
-　　var x = 2;
-　　function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(x); //2
-</code></pre>
-<p>4.apply 调用 ，apply方法作用是改变函数的调用对象，此方法的第一个参数为改变后调用这个函数的对象，this指代第一个参数</p>
-<pre><code>　var x = 0;
-　　function test(){
-　　　　alert(this.x);
-　　}
-　　var o={};
-　　o.x = 1;
-　　o.m = test;
-　　o.m.apply(); //0
-//apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。如果把最后一行代码修改为
-
-　　o.m.apply(o); //1
-</code></pre>
+              <p>简单来说，v-if 的初始化较快，但切换代价高；v-show 初始化慢，但切换成本低。如果元素涉及频繁的切换最好不要使用v-if，会造成消耗，如果元素不被看见，可以使用v-if而不使用v-show 。
+<strong>1.共同点</strong>
+用于根据条件展示元素
+<strong>2.区别</strong>
+（1）手段：
+v-if是动态的向DOM树内添加或者删除DOM元素；
+v-show是通过设置DOM元素的display样式属性控制显隐； v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS 属性 display。
+（2）编译过程：
+v-if切换有一个局部编译/卸载的过程，切换过程中合适地销毁和重建内部的事件监听和子组件；
+v-show只是简单的基于css切换；
+（3）编译条件：
+v-if是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译;
+v-show是在任何条件下（首次条件是否为真）都被编译，然后被缓存，而且DOM元素保留；
+（4）性能消耗：
+v-if有更高的切换消耗；
+v-show有更高的初始渲染消耗；
+（5）使用场景：
+v-if适合运营条件不大可能改变；
+v-show适合频繁切换。</p>
 
             </div>
           </article>
@@ -139,9 +111,9 @@ o.m(); // 1
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://jwxhhxx.github.io//post/js-zhong-de-ge-chong-width">
+            <a href="https://jwxhhxx.github.io//post/ru-he-qu-fen-pxem-he-rem">
               <h3 class="post-title">
-                JS中的各种width
+                如何区分px，em和rem
               </h3>
             </a>
           </div>
