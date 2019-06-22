@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>v-if和v-show的区别 | Summer/JWX</title>
-<link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1561004568011">
+<link rel="shortcut icon" href="https://jwxhhxx.github.io//favicon.ico?v=1561190354986">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jwxhhxx.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://jwxhhxx.github.io/">
-  <img class="avatar" src="https://jwxhhxx.github.io//images/avatar.png?v=1561004568011" alt="">
+  <img class="avatar" src="https://jwxhhxx.github.io//images/avatar.png?v=1561190354986" alt="">
   </a>
   <h1 class="site-title">
     Summer/JWX
@@ -81,6 +81,10 @@
                 · 2019-06-20 ·
               </time>
               
+                <a href="https://jwxhhxx.github.io//tag/zUgvGlvYq" class="post-tag">
+                  # vue
+                </a>
+              
             </div>
             
             <div class="post-content">
@@ -102,7 +106,9 @@ v-if有更高的切换消耗；
 v-show有更高的初始渲染消耗；
 （5）使用场景：
 v-if适合运营条件不大可能改变；
-v-show适合频繁切换。</p>
+v-show适合频繁切换。
+注意，v-show 不支持 <template> 元素，也不支持 v-else。
+当 v-if 与 v-for 一起使用时，v-for 具有比 v-if 更高的优先级。当然并不推荐这种使用方法。</p>
 
             </div>
           </article>
