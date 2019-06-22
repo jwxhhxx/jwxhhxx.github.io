@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>JS中关于this 的用法 | Summer/JWX</title>
+<title>Summer/JWX</title>
 <meta name="description" content="宝剑尚未配妥，转身已是江湖🐦 ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,79 +91,66 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">JS中关于this 的用法</h2>
-            <div class="post-date">2019-06-18</div>
-            
-            <div class="post-content">
-              <p>1.在一般函数方法中使用 this 指代全局对象</p>
-<pre><code>function test(){
-　　　　this.x = 1;
-　　　　alert(this.x);
-　　}
-　　test(); // 1
-</code></pre>
-<p>2.作为对象方法调用，this 指代上级对象</p>
-<pre><code>function test(){
-　　alert(this.x);
-}
-var o = {};
-o.x = 1;
-o.m = test;
-o.m(); // 1
-</code></pre>
-<p>3.作为构造函数调用，this 指代new 出的对象</p>
-<pre><code>　　function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(o.x); // 1
-    //运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：
-　　var x = 2;
-　　function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(x); //2
-</code></pre>
-<p>4.apply 调用 ，apply方法作用是改变函数的调用对象，此方法的第一个参数为改变后调用这个函数的对象，this指代第一个参数</p>
-<pre><code>　var x = 0;
-　　function test(){
-　　　　alert(this.x);
-　　}
-　　var o={};
-　　o.x = 1;
-　　o.m = test;
-　　o.m.apply(); //0
-//apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。如果把最后一行代码修改为
-
-　　o.m.apply(o); //1
-</code></pre>
-
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jwxhhxx.github.io//tag/20A_Xb6SR" class="tag">
-                    javaScript
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jwxhhxx.github.io//post/js-zhong-de-ge-chong-width">
-                  <h3 class="post-title">
-                    JS中的各种width
-                  </h3>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://jwxhhxx.github.io//post/guan-yu-js-de-iife">
+                  <h2 class="post-title">关于JS的IIFE</h2>
                 </a>
+                <div class="post-date">
+                  2019-06-17
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
               </div>
-            
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://jwxhhxx.github.io//post/javascript-zhong-bao-uncaught-referenceerror-xxx-is-not-defined">
+                  <h2 class="post-title"> javascript中报Uncaught ReferenceError: XXX is not defined</h2>
+                </a>
+                <div class="post-date">
+                  2019-06-17
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://jwxhhxx.github.io//post/hello-gridea">
+                  <h2 class="post-title">Hello Gridea</h2>
+                </a>
+                <div class="post-date">
+                  2018-12-12
+                </div>
+                <div class="post-abstract">
+                  <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 
-            
+                </div>
+              </div>
+              
+                <a class="right" href="https://jwxhhxx.github.io//post/hello-gridea">
+                  <div class="feature-container" style="background-image: url('https://jwxhhxx.github.io//post-images/hello-gridea.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
 
-          </div>
+          <div class="pagination-container">
+  
+    <a href="https://jwxhhxx.github.io//" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
 
         </div>
       </div>
